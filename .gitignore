@@ -1,0 +1,46 @@
+# Virtual Environments
+.venv/
+*/.venv/
+venv/
+ENV/
+env/
+
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.coverage
+htmlcov/
+.pytest_cache/
+
+# SQLite & Data files
+*.db
+*.db-wal
+*.db-shm
+data/*.db
+data/*.db-wal
+data/*.db-shm
+
+# Large Audio / Video Files
+*.mp4
+*.mkv
+*.mov
+*.wav
+*.mp3
+test_sample.mp4
+test_speech.wav
+media/uploads/*
+!media/uploads/.gitkeep
+ClipKaro/output/*
+!ClipKaro/output/.gitkeep
+
+# Environment variables & secrets
+.env
+.env.local
+*.log
+
+# OS & IDE
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini

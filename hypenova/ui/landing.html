@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HypeNova AI — From Moments to Momentum | Autonomous Short-Form Content Studio</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="landing-page dark-theme">
+  <!-- Top Navigation Header -->
+  <header class="landing-nav">
+    <div class="nav-container">
+      <div class="brand-logo">
+        <span class="logo-icon">⚡</span>
+        <div class="brand-text">
+          <span class="brand-name">HypeNova</span>
+          <span class="badge-ai">AI</span>
+        </div>
+      </div>
+      <nav class="landing-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <div class="landing-actions">
+        <button class="btn btn-secondary" onclick="openAuthModal('signin')">Sign In</button>
+        <button class="btn btn-primary" onclick="openAuthModal('signup')">Start Creating</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span> Next-Gen Autonomous Video Intelligence
+      </div>
+      <h1 class="hero-headline">
+        Turn long-form content into <span class="gradient-text">short-form momentum.</span>
+      </h1>
+      <p class="hero-subtext">
+        Discover viral moments automatically, produce polished 9:16 vertical clips with word-level Hinglish captions, and automate publishing across YouTube Shorts, Instagram Reels, and TikTok—all from one secure studio.
+      </p>
+      <div class="hero-cta-group">
+        <button class="btn btn-primary btn-large" onclick="openAuthModal('signup')">
+          <span>Start Creating Free</span>
+        </button>
+        <a href="/dashboard" class="btn btn-secondary btn-large">
+          <span>Explore Live Studio Demo</span>
+        </a>
+      </div>
+      <div class="hero-trust">
+        <span>✓ Respects Creator Rights</span>
+        <span>✓ 1080×1920 Clean Export</span>
+        <span>✓ Official YouTube OAuth</span>
+        <span>✓ Zero Password Scraping</span>
+      </div>
+
+      <!-- Hero Product Preview -->
+      <div class="hero-preview-window">
+        <div class="preview-header">
+          <div class="window-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="preview-title">HypeNova Studio • 01-autonomous-short-form-pipeline.mp4</div>
+          <div class="preview-status"><span class="badge-success">QA -14.3 LUFS</span></div>
+        </div>
+        <div class="preview-body">
+          <div class="mock-grid">
+            <div class="mock-sidebar">
+              <div class="mock-item active">📊 Overview</div>
+              <div class="mock-item">🔭 HypeScout (10 Watchlists)</div>
+              <div class="mock-item">🧠 Clip Studio (Viral 95.5)</div>
+              <div class="mock-item">🎬 Multi-Track Editor</div>
+              <div class="mock-item">📅 Publishing Queue</div>
+            </div>
+            <div class="mock-center flex-center">
+              <div class="mock-phone">
+                <div class="mock-screen">
+                  <div class="mock-captions">
+                    <span class="word-dim">WELCOME TO</span><br>
+                    <span class="word-highlight">HYPE NOVEL AI</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mock-inspector">
+              <div class="mock-label">Selected Moment</div>
+              <div class="mock-score">Viral Score: 95.5 / 100</div>
+              <div class="mock-label" style="margin-top:12px;">Active Preset</div>
+              <div class="mock-badge">Indian Gaming Comedy</div>
+              <div class="mock-label" style="margin-top:12px;">Monetization State</div>
+              <div class="mock-badge green">Monetization Cleared</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="section-container">
+    <div class="section-header">
+      <h2 class="section-title">The Six-Stage Production Engine</h2>
+      <p class="section-sub">From raw livestream or podcast footage to scheduled, high-retention vertical shorts.</p>
+    </div>
+    <div class="pipeline-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>Discover</h3>
+        <p>HypeScout monitors authorized creator watchlists and RSS feeds with strict copyright and rights classification.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>Analyze</h3>
+        <p>Faster-whisper transcribes audio on CPU/GPU with millisecond word timestamps and voice activity cues.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>Detect</h3>
+        <p>HypeBrain's 7-factor viral engine identifies gaming ironies, roast punchlines, and contrarian podcast wisdom.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <h3>Cut & Style</h3>
+        <p>HypeCut reframes to 9:16, centers speakers via YuNet face tracking, eliminates dead pauses, and burns animated subtitles.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">05</div>
+        <h3>Publish</h3>
+        <p>HypeRank packages 5 title variants, descriptions, and hashtags before queuing via official YouTube OAuth.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">06</div>
+        <h3>Learn</h3>
+        <p>Analytics Lab tracks genuine performance and format retention curves to continuously refine future clip selection.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Showcase -->
+  <section id="features" class="section-container">
+    <div class="section-header">
+      <h2 class="section-title">Engineered for Indian & International Creators</h2>
+      <p class="section-sub">No fragile web scrapers. Genuine local AI intelligence with cloud multi-tenancy.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🇮🇳</div>
+        <h3>Native Hinglish & Hindi</h3>
+        <p>Speech models trained for Indian conversational flow. Captions written in Roman letters the way your audience types.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎮</div>
+        <h3>Gaming Context Awareness</h3>
+        <p>Recognizes streamer banter, rage screams, NPC glitches, and confident boasts followed by immediate mission failure.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎙️</div>
+        <h3>Two-Person Podcast Director</h3>
+        <p>Tracks active speakers automatically and dynamically cuts to stacked split screens when both speakers laugh or react.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎬</div>
+        <h3>Multi-Track Browser Timeline</h3>
+        <p>Working trim in/out handles, waveform visualization, inline subtitle editing, safe area guides, and instant re-rendering.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>Tenant Isolation & Rights Gate</h3>
+        <p>Each creator operates in an isolated workspace. Videos, credentials, and YouTube tokens are encrypted and strictly segregated.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📮</div>
+        <h3>Multi-Channel Distribution</h3>
+        <p>Manage separate channel identities (like ClutchRush Gaming and MicDrop Cuts) with distinct rules and idempotent scheduling.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="section-container">
+    <div class="section-header">
+      <h2 class="section-title">Transparent Creator Pricing</h2>
+      <p class="section-sub">Start free on local hardware. Scale with cloud workers and agency team seats.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price">₹0 <span>/ mo</span></div>
+        <p class="pricing-desc">For individual creators testing on local hardware.</p>
+        <ul class="pricing-list">
+          <li>✓ Local CPU/GPU processing</li>
+          <li>✓ 1 Personal Workspace</li>
+          <li>✓ 1 Connected YouTube Channel</li>
+          <li>✓ Standard Visual Presets</li>
+          <li>✓ Full Multi-Track Video Editor</li>
+        </ul>
+        <button class="btn btn-secondary w-full" onclick="openAuthModal('signup')">Get Started</button>
+      </div>
+
+      <div class="pricing-card popular">
+        <div class="popular-badge">Most Popular</div>
+        <div class="pricing-tier">Creator Growth</div>
+        <div class="pricing-price">₹2,499 <span>/ mo</span></div>
+        <p class="pricing-desc">For active YouTubers, streamers, and podcasters.</p>
+        <ul class="pricing-list">
+          <li>✓ Unlimited Local & Cloud Workers</li>
+          <li>✓ 3 Isolated Workspaces</li>
+          <li>✓ Up to 5 Connected Channels</li>
+          <li>✓ Custom Brand Palettes & Outros</li>
+          <li>✓ Automated Daily Queue Scheduling</li>
+          <li>✓ Priority ASR & Whisper Models</li>
+        </ul>
+        <button class="btn btn-primary w-full" onclick="openAuthModal('signup')">Upgrade to Creator</button>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Studio / Agency</div>
+        <div class="pricing-price">₹9,999 <span>/ mo</span></div>
+        <p class="pricing-desc">For production agencies managing multiple creator rosters.</p>
+        <ul class="pricing-list">
+          <li>✓ Multi-Tenant Team Collaboration</li>
+          <li>✓ Client Billing & Package Portals</li>
+          <li>✓ Dedicated Cloud Rendering Nodes</li>
+          <li>✓ Nano Banana Custom Brand Art Engine</li>
+          <li>✓ Role-Based Member Permissions</li>
+        </ul>
+        <button class="btn btn-secondary w-full" onclick="openAuthModal('signup')">Contact Studio Sales</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="landing-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="brand-logo">
+          <span class="logo-icon">⚡</span>
+          <span class="brand-name">HypeNova AI</span>
+        </div>
+        <p class="footer-copy">© 2026 HypeNova AI. Built on MIT foundations (ClipKaro & PostKaro). Respects platform API terms and creator copyrights.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/dashboard">Launch Studio</a>
+        <a href="https://developers.google.com/youtube/terms/api-services-terms-of-service" target="_blank">YouTube API Terms</a>
+        <a href="/static/style.css">System Architecture</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Auth Modal -->
+  <div id="auth-modal" class="modal-backdrop" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-title">Sign In to HypeNova AI</h3>
+        <button class="modal-close" onclick="closeAuthModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="subtext" style="margin-bottom: 16px;">Access your isolated workspace and connected creator channels.</p>
+        
+        <button class="btn btn-google" onclick="handleGoogleSignIn()">
+          <span class="g-icon">G</span> Continue with Google (Firebase)
+        </button>
+
+        <div class="modal-divider"><span>OR LOCAL CREATOR LOGIN</span></div>
+
+        <div class="form-group">
+          <label>Creator Email</label>
+          <input type="email" id="auth-email" class="input-text" placeholder="creator@clutchrush.in" value="admin@hypenova.ai">
+        </div>
+        <div class="form-group">
+          <label>Workspace Identifier</label>
+          <input type="text" id="auth-workspace" class="input-text" placeholder="ws-default" value="ws-default">
+        </div>
+
+        <button class="btn btn-primary w-full" onclick="handleEmailLogin()">
+          Enter Workspace
+        </button>
+        <p class="subtext text-center" style="margin-top: 12px;">Google password is never stored or requested.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openAuthModal(mode) {
+      document.getElementById('modal-title').textContent = mode === 'signup' ? 'Create HypeNova Creator Account' : 'Sign In to HypeNova AI';
+      document.getElementById('auth-modal').style.display = 'flex';
+    }
+    function closeAuthModal() {
+      document.getElementById('auth-modal').style.display = 'none';
+    }
+    function handleGoogleSignIn() {
+      // Directs to dashboard with simulated Google Firebase identity for dev environment
+      window.location.href = '/dashboard';
+    }
+    function handleEmailLogin() {
+      const email = document.getElementById('auth-email').value;
+      const ws = document.getElementById('auth-workspace').value;
+      localStorage.setItem('hypenova_email', email);
+      localStorage.setItem('hypenova_workspace', ws);
+      window.location.href = '/dashboard';
+    }
+  </script>
+</body>
+</html>

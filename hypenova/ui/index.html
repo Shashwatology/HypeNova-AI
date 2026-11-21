@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HypeNova AI — Studio Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">
+          <span class="logo-icon">⚡</span>
+          <div>
+            <div class="brand-name">HypeNova <span class="badge-ai">AI</span></div>
+            <div class="brand-tagline">From Moments to Momentum</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workspace Selector -->
+      <div class="workspace-selector-box">
+        <label class="workspace-label">ACTIVE WORKSPACE</label>
+        <select id="select-workspace" class="input-select workspace-dropdown">
+          <option value="ws-default">HypeNova Primary Studio (Studio)</option>
+          <option value="ws-clutchrush">ClutchRush Gaming (Creator)</option>
+          <option value="ws-micdrop">MicDrop Cuts (Creator)</option>
+        </select>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-tab="overview">
+          <span class="icon">📊</span> Overview
+        </button>
+        <button class="nav-item" data-tab="scout">
+          <span class="icon">🔭</span> HypeScout
+        </button>
+        <button class="nav-item" data-tab="studio">
+          <span class="icon">🧠</span> Clip Studio
+        </button>
+        <button class="nav-item" data-tab="editor">
+          <span class="icon">🎬</span> Multi-Track Editor
+        </button>
+        <button class="nav-item" data-tab="accounts">
+          <span class="icon">🔗</span> YouTube Accounts
+        </button>
+        <button class="nav-item" data-tab="calendar">
+          <span class="icon">📅</span> Calendar & Channels
+        </button>
+        <button class="nav-item" data-tab="analytics">
+          <span class="icon">📈</span> Analytics Lab
+        </button>
+        <button class="nav-item" data-tab="automation">
+          <span class="icon">⚙️</span> Automation Rules
+        </button>
+        <button class="nav-item" data-tab="business">
+          <span class="icon">💼</span> Creator Business
+        </button>
+        <button class="nav-item" data-tab="health">
+          <span class="icon">🩺</span> System Health
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="user-avatar">SL</div>
+          <div class="user-info">
+            <span class="user-name" id="user-display-name">Studio Lead</span>
+            <span class="user-role badge-cyan">Owner</span>
+          </div>
+          <a href="/" class="btn-logout" title="Exit to Landing Page">⏻</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Navigation Bar -->
+      <header class="topbar">
+        <div class="page-title" id="page-title">Dashboard Overview</div>
+        <div class="topbar-actions">
+          <button class="btn btn-primary" id="btn-topbar-new-project" onclick="openNewProjectModal()">
+            <span>+ New Project</span>
+          </button>
+          <button class="btn btn-secondary" id="btn-trigger-scan">
+            <span>⚡ Run Scout Scan</span>
+          </button>
+          <div class="channel-badge" id="active-profile-badge">
+            <span class="dot-violet"></span> ClutchRush Gaming
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Views -->
+      <div class="content-view">
+        
+        <!-- 1. OVERVIEW TAB -->
+        <section class="tab-pane active" id="tab-overview">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Videos Discovered</div>
+              <div class="stat-val" id="stat-discovered">0</div>
+              <div class="stat-sub">Tracked creator feeds & watchlists</div>
+            </div>
+            <div class="stat-card highlight-cyan">
+              <div class="stat-label">Authorized Sources</div>
+              <div class="stat-val" id="stat-authorized">0</div>
+              <div class="stat-sub">Rights cleared & owned media</div>
+            </div>
+            <div class="stat-card highlight-violet">
+              <div class="stat-label">Clips Produced</div>
+              <div class="stat-val" id="stat-clips">0</div>
+              <div class="stat-sub">Rendered 9:16 vertical shorts</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Scheduled / Published</div>
+              <div class="stat-val" id="stat-scheduled">0</div>
+              <div class="stat-sub">Multi-channel queue</div>
+            </div>
+          </div>
+
+          <div class="grid-2col">
+            <div class="card">
+              <div class="card-header">
+                <h3>Hardware & Compute Resources</h3>
+                <span class="badge-success">Operational</span>
+              </div>
+              <div class="card-body">
+                <div class="info-row">
+                  <span class="label">CPU Execution:</span>
+                  <span class="val font-mono">12th Gen Intel Core i5-12500T (12 Threads)</span>
+                </div>
+                <div class="info-row">
+                  <span class="label">GPU Mode:</span>
+                  <span class="val font-mono">Intel UHD 770 (CPU INT8 Fallback Mode)</span>
+                </div>
+                <div class="info-row">
+                  <span class="label">Free Disk Space:</span>
+                  <span class="val font-mono" id="overview-disk">Calculating...</span>
+                </div>
+                <div class="info-row">
+                  <span class="label">Total Compute Used:</span>
+                  <span class="val font-mono" id="overview-compute">0 s</span>
+                </div>
+                <div class="info-row">
+                  <span class="label">Est. Energy/Compute Cost:</span>
+                  <span class="val font-mono text-cyan" id="overview-cost">₹0.00</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3>Active Publishing Profiles</h3>
+                <span class="badge-neutral">Strict Rights Cleared</span>
+              </div>
+              <div class="card-body">
+                <div class="profile-item">
+                  <div class="profile-header">
+                    <strong>Profile A — ClutchRush Gaming</strong>
+                    <span class="badge-cyan">Gaming • Hinglish</span>
+                  </div>
+                  <p class="profile-desc">GTA highlights, hilarious banter, spontaneous reactions. Up to 2 shorts/day.</p>
+                </div>
+                <div class="profile-item">
+                  <div class="profile-header">
+                    <strong>Profile B — MicDrop Cuts</strong>
+                    <span class="badge-violet">Podcasts • Hindi & English</span>
+                  </div>
+                  <p class="profile-desc">High-retention founder & interview lessons, contrarian wisdom. Up to 1 short/day.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. HYPESCOUT TAB -->
+        <section class="tab-pane" id="tab-scout">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h3>Content Radar & Watchlists</h3>
+                <p class="subtext">Strict Rights Tracking: A discovered URL is a reference only; source media or authorization required.</p>
+              </div>
+              <div class="flex-gap align-center">
+                <select id="scout-filter-rights" class="input-select" onchange="loadDiscoveries()" style="max-width: 170px;">
+                  <option value="">All Rights Statuses</option>
+                  <option value="AUTHORIZED">Authorized Only</option>
+                  <option value="SOURCE_REQUIRED">Source Required</option>
+                  <option value="BLOCKED">Blocked</option>
+                </select>
+                <button class="btn btn-secondary" onclick="openNewProjectModal()">+ Ingest Footage</button>
+                <button class="btn btn-primary" onclick="triggerManualScan()">Scan Watchlists</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table" id="table-discoveries">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Creator / Channel</th>
+                      <th>Category</th>
+                      <th>Public Views</th>
+                      <th>Rights Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="discoveries-tbody">
+                    <tr><td colspan="6" class="text-center">Loading discoveries...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. CLIP STUDIO TAB -->
+        <section class="tab-pane" id="tab-studio">
+          <!-- Processing Monitor Card -->
+          <div id="processing-monitor-card" class="card processing-monitor-card hidden" style="margin-bottom: 20px; border: 1px solid var(--accent-cyan); background: rgba(0, 240, 255, 0.05);">
+            <div class="card-header flex-between" style="border-bottom: none; padding-bottom: 8px;">
+              <div class="flex-gap align-center">
+                <span class="live-dot" style="display:inline-block; width:10px; height:10px; border-radius:50%; background:var(--accent-cyan); animation: pulse 1.5s infinite;"></span>
+                <strong id="monitor-job-title" style="font-size: 15px;">Autonomous Pipeline Running</strong>
+                <span class="badge-cyan" id="monitor-stage-badge">Extracting Audio</span>
+              </div>
+              <div class="flex-gap align-center">
+                <span class="font-mono text-cyan" id="monitor-pct-text" style="font-weight: 700; font-size: 16px;">25%</span>
+                <button class="btn btn-sm btn-secondary" id="btn-monitor-cancel" onclick="cancelCurrentJob()">Cancel</button>
+                <button class="btn btn-sm btn-secondary hidden" id="btn-monitor-retry" onclick="retryCurrentJob()">Retry</button>
+                <button class="btn-icon-sm" onclick="dismissMonitor()" title="Dismiss" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:16px;">✕</button>
+              </div>
+            </div>
+            <div style="padding: 0 20px 16px 20px;">
+              <div class="progress-bar-container" style="background: rgba(255,255,255,0.1); height: 8px; border-radius: 4px; overflow: hidden; margin-bottom: 10px;">
+                <div class="progress-bar-fill" id="monitor-progress-fill" style="width: 25%; height: 100%; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-violet)); transition: width 0.4s ease;"></div>
+              </div>
+              <div class="flex-between">
+                <span class="subtext" id="monitor-detail-text">Stage: Speech-to-Text Transcription (Faster-Whisper INT8 CPU)</span>
+                <span class="subtext font-mono" id="monitor-timer-text">Single-job CPU queue active</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h3>AI Highlight Candidates (HypeBrain)</h3>
+                <p class="subtext">Ranked using 7-factor viral potential scoring (0-100) with second-pass critic verification.</p>
+              </div>
+              <div class="flex-gap">
+                <button class="btn btn-primary" onclick="openNewProjectModal()">+ New Project</button>
+              </div>
+            </div>
+            <div class="card-body" id="clips-list-container">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. REAL MULTI-TRACK VIDEO EDITOR TAB -->
+        <section class="tab-pane" id="tab-editor">
+          <!-- Editor Topbar Toolbar -->
+          <div class="editor-toolbar flex-between">
+            <div class="flex-gap align-center">
+              <span class="badge-cyan">Editing: Clip #1 — Autonomous Short Form Pipeline</span>
+              <span class="badge-success" id="editor-qa-badge">QA Verified (-14.3 LUFS)</span>
+            </div>
+            <div class="flex-gap">
+              <button class="btn btn-secondary" id="btn-editor-undo" onclick="editorUndo()">↩ Undo</button>
+              <button class="btn btn-secondary" id="btn-editor-redo" onclick="editorRedo()">↪ Redo</button>
+              <button class="btn btn-secondary" onclick="saveTimelineDraft()">💾 Save Draft</button>
+              <button class="btn btn-primary" onclick="triggerRerenderExport()">🚀 Re-Render & Export</button>
+            </div>
+          </div>
+
+          <div class="editor-workspace-grid">
+            <!-- Left: Asset & Preset Library -->
+            <div class="card editor-left-panel">
+              <div class="card-header">
+                <h3>Presets & Styling</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Editing Preset</label>
+                  <select class="input-select" id="select-preset" onchange="onPresetChange()">
+                    <option value="Indian Gaming Comedy">Indian Gaming Comedy (Hinglish • Star Abusive)</option>
+                    <option value="GTA Chaos">GTA Chaos (Karaoke Captions • Hype SFX)</option>
+                    <option value="Clean Podcast">Clean Podcast (Minimal Clean • Restrained)</option>
+                    <option value="Cinematic Gaming">Cinematic Gaming (Dramatic • Pacing)</option>
+                    <option value="Quick News">Quick News (Top Hook Box • Fast Cuts)</option>
+                    <option value="Minimal Viral">Minimal Viral (Classic Mobile First)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Aspect Ratio Preview</label>
+                  <div class="pill-group">
+                    <button class="pill active" id="btn-ratio-916" onclick="setAspectRatio('9:16')">9:16 Portrait</button>
+                    <button class="pill" id="btn-ratio-169" onclick="setAspectRatio('16:9')">16:9 Landscape</button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Safe Area Guides</label>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="check-safe-zones" checked onchange="toggleSafeZones()">
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-label">App Buttons & Caption Zone</span>
+                  </label>
+                </div>
+
+                <div class="form-group">
+                  <label>Audio Normalization</label>
+                  <div class="info-row">
+                    <span>Target Loudness:</span>
+                    <span class="font-mono text-cyan">-14 LUFS</span>
+                  </div>
+                  <div class="info-row">
+                    <span>Sound Effects:</span>
+                    <span class="font-mono" id="inspector-sfx">Funny / Whoosh</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Center: Canvas Preview with Safe Area Overlay -->
+            <div class="card editor-center-panel flex-center">
+              <div class="canvas-container" id="canvas-container">
+                <video id="editor-video-player" class="vertical-player" playsinline>
+                  <source src="/output/test-sample/edited/01-autonomous-short-form-pipeline.mp4" type="video/mp4">
+                </video>
+                
+                <!-- Safe Area Overlay -->
+                <div class="safe-area-overlay" id="safe-area-overlay">
+                  <div class="safe-zone-top">Top Header Safe Zone (200px)</div>
+                  <div class="safe-zone-right">Like / Share Buttons Zone</div>
+                  <div class="safe-zone-bottom">Caption Safe Area (Bottom 320px)</div>
+                </div>
+              </div>
+
+              <!-- Canvas Playback Bar -->
+              <div class="canvas-playback-bar">
+                <button class="btn-icon" onclick="stepTimeline(-1)">⏪</button>
+                <button class="btn-icon play-btn" id="btn-play-pause" onclick="togglePlayPause()">▶</button>
+                <button class="btn-icon" onclick="stepTimeline(1)">⏩</button>
+                <span class="timecode-display font-mono" id="timecode-display">00:00.00 / 00:18.81</span>
+              </div>
+            </div>
+
+            <!-- Right: Subtitle Inspector & Quick Editor -->
+            <div class="card editor-right-panel">
+              <div class="card-header">
+                <h3>Caption Inspector</h3>
+              </div>
+              <div class="card-body">
+                <p class="subtext">Click any caption block in the timeline below to edit text or timing directly.</p>
+                <div class="form-group mt-10">
+                  <label>Active Word / Phrase</label>
+                  <input type="text" id="inspector-caption-text" class="input-text" placeholder="Select a caption block...">
+                </div>
+                <div class="grid-2col" style="gap: 8px;">
+                  <div class="form-group">
+                    <label>Start Time (s)</label>
+                    <input type="number" id="inspector-caption-start" class="input-text" step="0.1">
+                  </div>
+                  <div class="form-group">
+                    <label>End Time (s)</label>
+                    <input type="number" id="inspector-caption-end" class="input-text" step="0.1">
+                  </div>
+                </div>
+                <button class="btn btn-secondary w-full" onclick="updateActiveCaption()">Update Caption</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom: Multi-Track Timeline -->
+          <div class="card timeline-container mt-20">
+            <div class="timeline-header flex-between">
+              <div class="timeline-tools flex-gap">
+                <button class="btn btn-sm btn-secondary" onclick="splitAtPlayhead()">✂️ Split at Playhead</button>
+                <button class="btn btn-sm btn-secondary" onclick="snapTrimToPlayhead('start')">Set In-Point [</button>
+                <button class="btn btn-sm btn-secondary" onclick="snapTrimToPlayhead('end')">Set Out-Point ]</button>
+              </div>
+              <div class="timeline-zoom-controls font-mono text-muted">
+                Track Duration: <span id="timeline-duration-display">18.81s</span>
+              </div>
+            </div>
+
+            <!-- Time Ruler -->
+            <div class="time-ruler" id="time-ruler">
+              <div class="playhead" id="playhead">
+                <div class="playhead-handle"></div>
+                <div class="playhead-line"></div>
+              </div>
+            </div>
+
+            <!-- Multi-Tracks -->
+            <div class="tracks-wrapper">
+              <!-- Track 1: Video Track -->
+              <div class="track-row">
+                <div class="track-label">VIDEO (9:16)</div>
+                <div class="track-content" id="track-video">
+                  <div class="clip-block video-clip-block" id="video-clip-block">
+                    <div class="trim-handle trim-left" id="handle-trim-left" title="Drag to trim start"></div>
+                    <span class="clip-block-label">01-autonomous-short-form-pipeline.mp4</span>
+                    <div class="trim-handle trim-right" id="handle-trim-right" title="Drag to trim end"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Track 2: Audio Track -->
+              <div class="track-row">
+                <div class="track-label">AUDIO (-14 LUFS)</div>
+                <div class="track-content" id="track-audio">
+                  <div class="clip-block audio-clip-block">
+                    <div class="waveform-bars">
+                      <span></span><span></span><span></span><span></span><span></span><span></span>
+                      <span></span><span></span><span></span><span></span><span></span><span></span>
+                      <span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Track 3: Subtitle Caption Track -->
+              <div class="track-row">
+                <div class="track-label">CAPTIONS</div>
+                <div class="track-content" id="track-captions">
+                  <!-- Dynamically populated word blocks -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. YOUTUBE ACCOUNTS TAB -->
+        <section class="tab-pane" id="tab-accounts">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h3>Connected YouTube Accounts & Channels</h3>
+                <p class="subtext">Google OAuth 2.0 authorization for official video uploads and authenticated performance analytics.</p>
+              </div>
+              <button class="btn btn-primary" onclick="openConnectModal()">+ Connect Channel</button>
+            </div>
+            <div class="card-body">
+              <div class="accounts-grid" id="accounts-list-container">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. CONTENT CALENDAR TAB -->
+        <section class="tab-pane" id="tab-calendar">
+          <div class="card">
+            <div class="card-header">
+              <h3>Publishing Queue & PostKaro Handoff</h3>
+              <p class="subtext">Idempotent queue with scheduled execution and official platform token validation.</p>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table" id="calendar-table">
+                  <thead>
+                    <tr>
+                      <th>Clip Title</th>
+                      <th>Target Channel</th>
+                      <th>Platform</th>
+                      <th>Scheduled Time</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="calendar-tbody">
+                    <tr><td colspan="5" class="text-center">No queued uploads pending review.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. ANALYTICS LAB TAB -->
+        <section class="tab-pane" id="tab-analytics">
+          <div class="card">
+            <div class="card-header">
+              <h3>Authenticated Analytics & Format Performance</h3>
+              <p class="subtext">Official YouTube Analytics API reports authenticated data with a 48–72 hour aggregation latency as specified by Google.</p>
+            </div>
+            <div class="card-body">
+              <div class="callout-box">
+                <strong>ℹ️ Official Data Notice:</strong> YouTube Analytics API has an inherent 48–72 hour processing delay. Real-time viewer curves are not synthesized; below are observational format benchmarks.
+              </div>
+              <div class="table-responsive mt-16">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Editing Preset / Format</th>
+                      <th>Category</th>
+                      <th>Observed Retention</th>
+                      <th>Sample Views</th>
+                      <th>Performance Index</th>
+                    </tr>
+                  </thead>
+                  <tbody id="analytics-tbody">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. AUTOMATION RULES TAB -->
+        <section class="tab-pane" id="tab-automation">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h3>Automation Engine Controls</h3>
+                <p class="subtext">Persistent background scheduler rules and publishing safeguards.</p>
+              </div>
+              <button class="btn btn-primary" id="btn-toggle-auto">Toggle Automation</button>
+            </div>
+            <div class="card-body">
+              <div class="info-row">
+                <span class="label">Discovery Frequency:</span>
+                <span class="val font-mono">Every 6 Hours</span>
+              </div>
+              <div class="info-row">
+                <span class="label">Processing Queue Refresh:</span>
+                <span class="val font-mono">Every 2 Hours</span>
+              </div>
+              <div class="info-row">
+                <span class="label">Default Publishing Mode:</span>
+                <span class="val font-mono text-cyan">AUTOMATED PRODUCTION + HUMAN APPROVAL</span>
+              </div>
+              <div class="info-row">
+                <span class="label">Unattended Auto-Publishing:</span>
+                <span class="val font-mono text-violet">RESTRICTED (Owned/Licensed Media Only)</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. CREATOR BUSINESS TAB -->
+        <section class="tab-pane" id="tab-business">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Monthly Gross Margin</div>
+              <div class="stat-val text-cyan">97.9%</div>
+              <div class="stat-sub">High margin creator clipping model</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Active Agency Clients</div>
+              <div class="stat-val" id="stat-clients">1</div>
+              <div class="stat-sub">Retainer production contracts</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Avg Compute Cost / Clip</div>
+              <div class="stat-val text-violet">₹2.50</div>
+              <div class="stat-sub">Strictly local hardware compute</div>
+            </div>
+          </div>
+
+          <div class="card mt-20">
+            <div class="card-header">
+              <h3>Creator Service Packages</h3>
+            </div>
+            <div class="card-body">
+              <div class="grid-3col" id="packages-container">
+                <!-- Dynamically rendered -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10. SYSTEM HEALTH TAB -->
+        <section class="tab-pane" id="tab-health">
+          <div class="card">
+            <div class="card-header">
+              <h3>System Worker Logs & Telemetry</h3>
+            </div>
+            <div class="card-body">
+              <div class="log-terminal" id="system-logs-container">
+                <div>[SYSTEM] Initializing HypeNova AI Health Monitor...</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Connect Account Modal -->
+  <div id="connect-modal" class="modal-backdrop" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Connect YouTube Channel (OAuth 2.0)</h3>
+        <button class="modal-close" onclick="closeConnectModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="subtext" style="margin-bottom: 16px;">
+          Authorize HypeNova AI to upload scheduled shorts and retrieve performance analytics via official Google APIs.
+        </p>
+        <div class="form-group">
+          <label>Channel Name</label>
+          <input type="text" id="connect-channel-name" class="input-text" placeholder="e.g. ClutchRush Gaming" value="ClutchRush Gaming">
+        </div>
+        <div class="form-group">
+          <label>YouTube Channel ID</label>
+          <input type="text" id="connect-channel-id" class="input-text" placeholder="UC..." value="UC_CR_DEMO_001">
+        </div>
+        <div class="form-group">
+          <label>Google Account Email</label>
+          <input type="email" id="connect-account-email" class="input-text" placeholder="creator@gmail.com" value="creator@clutchrush.in">
+        </div>
+        <button class="btn btn-primary w-full" onclick="submitChannelConnect()">Confirm & Connect Channel</button>
+        <p class="subtext text-center" style="margin-top: 10px;">OAuth refresh tokens are securely encrypted per workspace.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Project Modal (Autonomous Production) -->
+  <div id="modal-new-project" class="modal-backdrop" style="display: none;">
+    <div class="modal-card" style="max-width: 580px;">
+      <div class="modal-header">
+        <div>
+          <h3>Create New Short-Form Project</h3>
+          <p class="subtext">From raw video footage to rendered 9:16 Shorts with zero terminal commands.</p>
+        </div>
+        <button class="modal-close" onclick="closeNewProjectModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <!-- Tab Switcher -->
+        <div class="pill-group mb-16" style="margin-bottom: 16px;">
+          <button class="pill active" id="btn-project-mode-upload" onclick="setProjectInputMode('upload')">📁 Upload Video File</button>
+          <button class="pill" id="btn-project-mode-scout" onclick="setProjectInputMode('scout')">🔭 Select Authorized Footage</button>
+        </div>
+
+        <!-- Mode 1: File Upload -->
+        <div id="project-upload-section">
+          <div class="drop-zone" id="project-drop-zone" onclick="document.getElementById('project-file-input').click()">
+            <div class="drop-zone-icon" style="font-size: 32px; margin-bottom: 8px;">🎬</div>
+            <strong id="drop-zone-text">Click to browse or drag & drop video footage</strong>
+            <p class="subtext">Supports MP4, MKV, MOV (up to 2GB). Optimized for Intel i5 CPU / Ryzen 5.</p>
+            <input type="file" id="project-file-input" accept="video/mp4,video/mkv,video/quicktime,video/webm" style="display: none;" onchange="onProjectFileSelected(this)">
+          </div>
+          <div id="upload-file-details" class="info-row hidden" style="margin-top: 10px;">
+            <span class="label">Selected File:</span>
+            <span class="val font-mono text-cyan" id="selected-file-name">None</span>
+          </div>
+        </div>
+
+        <!-- Mode 2: Existing Authorized Video from Scout -->
+        <div id="project-scout-section" class="hidden">
+          <div class="form-group">
+            <label>Select Authorized Source Video</label>
+            <select id="project-scout-select" class="input-select">
+              <option value="">Loading authorized media...</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Common Project Fields -->
+        <div class="form-group mt-16" style="margin-top: 14px;">
+          <label>Project Title</label>
+          <input type="text" id="project-title-input" class="input-text" placeholder="e.g. Insane Clutch Play GTA Banter">
+        </div>
+
+        <div class="grid-2col" style="gap: 12px;">
+          <div class="form-group">
+            <label>Niche Category</label>
+            <select id="project-category-select" class="input-select">
+              <option value="gaming">Gaming Highlights</option>
+              <option value="podcast">Podcast & Interview</option>
+              <option value="news">Tech & Trending News</option>
+              <option value="educational">Explainer & Education</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Visual & Subtitle Preset</label>
+            <select id="project-preset-select" class="input-select">
+              <option value="Indian Gaming Comedy">Indian Gaming Comedy (Hinglish)</option>
+              <option value="GTA Chaos">GTA Chaos (Karaoke Captions)</option>
+              <option value="Clean Podcast">Clean Podcast (Minimal Clean)</option>
+              <option value="Cinematic Gaming">Cinematic Gaming</option>
+              <option value="Quick News">Quick News (Hook Box)</option>
+              <option value="Minimal Viral">Minimal Viral</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Rights Certification Checkbox -->
+        <div class="rights-certification-box" style="margin-top: 14px; padding: 12px; background: rgba(255, 170, 0, 0.08); border: 1px solid rgba(255, 170, 0, 0.3); border-radius: 6px;">
+          <label class="checkbox-container" style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer; font-size: 13px;">
+            <input type="checkbox" id="project-rights-checkbox" onchange="toggleProjectSubmitState()" style="margin-top: 2px;">
+            <span>
+              <strong>Rights & Policy Certification:</strong> I certify that I own this media or have explicit authorized permission to process, edit, and publish this content.
+            </span>
+          </label>
+        </div>
+
+        <!-- Upload Progress Indicator -->
+        <div id="project-upload-progress" class="hidden" style="margin-top: 14px;">
+          <div class="flex-between" style="font-size: 12px; margin-bottom: 4px;">
+            <span id="upload-status-label">Uploading media...</span>
+            <span class="font-mono text-cyan" id="upload-pct-label">0%</span>
+          </div>
+          <div class="progress-bar-container" style="background: rgba(255,255,255,0.1); height: 6px; border-radius: 3px; overflow: hidden;">
+            <div id="upload-progress-fill" style="width: 0%; height: 100%; background: var(--accent-cyan); transition: width 0.2s ease;"></div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary w-full mt-16" id="btn-submit-project" onclick="submitNewProject()" disabled style="margin-top: 16px; opacity: 0.5;">
+          🚀 Start Autonomous Pipeline
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Schedule & Publish Modal -->
+  <div id="modal-schedule-publish" class="modal-backdrop" style="display: none;">
+    <div class="modal-card" style="max-width: 540px;">
+      <div class="modal-header">
+        <div>
+          <h3>Approve & Schedule Short</h3>
+          <p class="subtext">Deliver rendered short to YouTube channel queue with verified metadata.</p>
+        </div>
+        <button class="modal-close" onclick="closeScheduleModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="schedule-clip-id">
+        <div class="form-group">
+          <label>Target Channel Profile</label>
+          <select id="schedule-channel-select" class="input-select">
+            <option value="clutchrush-gaming">ClutchRush Gaming (YouTube Shorts)</option>
+            <option value="micdrop-cuts">MicDrop Cuts (YouTube Shorts)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>YouTube Short Title</label>
+          <input type="text" id="schedule-title-input" class="input-text" placeholder="Shorts Title #Shorts">
+        </div>
+        <div class="form-group">
+          <label>Caption & Description</label>
+          <textarea id="schedule-desc-input" class="input-text" rows="3" placeholder="Engaging description, hashtags, credits..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Scheduled Date & Time</label>
+          <input type="datetime-local" id="schedule-time-input" class="input-text">
+        </div>
+
+        <div class="grid-2col" style="gap: 10px; margin-top: 16px;">
+          <button class="btn btn-secondary w-full" onclick="submitScheduleQueue()">
+            📅 Queue for Schedule
+          </button>
+          <button class="btn btn-primary w-full" onclick="submitPublishNow()">
+            🚀 Publish Now (Mock Test)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
